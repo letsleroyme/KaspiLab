@@ -20,7 +20,7 @@ namespace KaspiLab1
                 Console.Write($@"{mas[i]} ");
                 summ += mas[i];
             }
-            Console.WriteLine();
+            Console.WriteLine(); 
             for (int i = 0; i < mas.Length; i++)
             {
                 if (IsEvenNumber(mas[i]))
@@ -35,12 +35,22 @@ namespace KaspiLab1
 
             Console.ReadKey();
         }
-
+        /// <summary>
+        /// Метод, определяющий четное ли число
+        /// </summary>
+        /// <param name="n">Число, которое нужно проверять</param>
+        /// <returns>True - четное, false - нечетное</returns>
         private static bool IsEvenNumber(int n)
-        {
+        { 
             return n % 2 == 0;
         }
 
+
+        /// <summary>
+        /// Метод, определяющий простое ли число
+        /// </summary>
+        /// <param name="n">Число, которое нужно проверять</param>
+        /// <returns>True - четное, false - нечетное</returns>
         private static bool IsSimpleNumber(int n)
         {
             if (n > 1)
