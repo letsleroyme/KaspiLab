@@ -1,0 +1,6 @@
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiLab2\bin\Debug\KaspiLab2.exe.config
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiLab2\bin\Debug\KaspiLab2.exe
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiLab2\bin\Debug\KaspiLab2.pdb
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiLab2\obj\Debug\KaspiLab2.csproj.CoreCompileInputs.cache
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiLab2\obj\Debug\KaspiLab2.exe
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiLab2\obj\Debug\KaspiLab2.pdb
