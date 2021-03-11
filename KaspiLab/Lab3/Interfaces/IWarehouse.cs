@@ -12,7 +12,7 @@ namespace Lab3.Interfaces
         Product MoveProduct(Product product);
         Product SearchProduct(string sku);
         double Calculate();
-        void SetEmployee();
+        void SetEmployee(Employee emp);
 
     }
 }
