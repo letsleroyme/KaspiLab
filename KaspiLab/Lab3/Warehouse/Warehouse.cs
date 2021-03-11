@@ -11,7 +11,7 @@ namespace Lab3.Warehouse
     {
         public string Adress;
         public int Square;
-        private int _productCount;
+        //private int _productCount;
         public int ProductCount
         {
             get => _products.Count;
