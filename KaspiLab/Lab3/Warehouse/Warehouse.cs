@@ -12,15 +12,12 @@ namespace Lab3.Warehouse
         public string Adress;
         public int Square;
         //private int _productCount;
-        public int ProductCount
-        {
-            get => _products.Count;
-        }
+        public int ProductCount => Products.Count;
 
         public Employee Worker;
 
-        private List<Product> _products;
-        public abstract List<Product> Products { get; set; }
+        protected List<Product> Products { get; set; }
+        //public abstract List<Product> Products { get; set; }
 
         public abstract void AddProduct(Product product);
 
@@ -28,7 +25,7 @@ namespace Lab3.Warehouse
         public double Calculate()
         {
             double totalcost = 0;
-            foreach (var product in _products)
+            foreach (var product in Products)
                 totalcost += product.Cost;
 
             return totalcost;
@@ -36,16 +33,16 @@ namespace Lab3.Warehouse
 
         public void MoveProduct(List<Product> products, Warehouse warehouse)
         {
-            foreach (var pr in _products)
+            foreach (var pr in Products)
             {
-                _products.Remove(products.Where(x => x == pr).FirstOrDefault());
+                Products.Remove(products.Where(x => x == pr).FirstOrDefault());
                 warehouse.AddProduct(pr);
             }
         }
 
         public Product SearchProduct(string sku)
         {
-            return _products.Where(x => x.SKU == sku).FirstOrDefault();
+            return Products.Where(x => x.SKU == sku).FirstOrDefault();
         }
 
         public void SetEmployee(Employee emp)
@@ -58,6 +55,10 @@ namespace Lab3.Warehouse
             return this;
         }
 
-
+        public override string ToString()
+        {
+            string type = this is ClosedWarehouse ? "Крытый склад" : "Открытый склад";
+            return $"Адрес склада: {Adress}, площадь: {Square}. Количество товаров: {ProductCount}. Тип склада: {type} \r\n Ответсвенный сотрудник: {Worker.ToString()}";
+        }
     }
 }

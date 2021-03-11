@@ -12,5 +12,15 @@ namespace Lab3
 
         public string Position { get; set; }
 
+        public Employee(string fio, string position)
+        {
+            FIO = fio; Position = position;
+        }
+
+        public override string ToString()
+        {
+            return $"{FIO}, {Position}\r\n";
+        }
+
     }
 }

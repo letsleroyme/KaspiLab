@@ -10,15 +10,15 @@ namespace Lab3.Warehouse
 {
     class OpenWarehouse : Warehouse
     {
-        private List<Product> _products;
+        //private List<Product> _products;
         
-        public override List<Product> Products
+        /*public override List<Product> Products
         { 
             set
             {
                 foreach (var product in Products)
                 {
-                    if (product is BulkProduct bulkProduct)
+                    if (product is BulkProduct)
                         throw new Exception("На открытом складе не могут храниться сыпучие продукты!");
                     _products = value;
                 }
@@ -28,13 +28,13 @@ namespace Lab3.Warehouse
             {
                 return _products;
             }
-        }
+        }*/
 
 
         public override void AddProduct(Product product)
         {
             if (!(product is BulkProduct))
-                _products.Add(product);
+                base.Products.Add(product);
         }
 
 
