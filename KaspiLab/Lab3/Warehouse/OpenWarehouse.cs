@@ -6,35 +6,25 @@ using System.Threading.Tasks;
 using Lab3.Products;
 using Lab3.Interfaces;
 
-namespace Lab3.Warehouse
+namespace Lab3
 {
     class OpenWarehouse : Warehouse
     {
-        //private List<Product> _products;
-        
-        /*public override List<Product> Products
-        { 
-            set
-            {
-                foreach (var product in Products)
-                {
-                    if (product is BulkProduct)
-                        throw new Exception("На открытом складе не могут храниться сыпучие продукты!");
-                    _products = value;
-                }
-            }
+        public OpenWarehouse(string adress, int square) : base(adress, square)
+        {
 
-            get
-            {
-                return _products;
-            }
-        }*/
+        }
 
 
         public override void AddProduct(Product product)
         {
             if (!(product is BulkProduct))
-                base.Products.Add(product);
+            {
+                Products.Add(product);
+                AddProducttoDict();
+
+            }
+
         }
 
 

@@ -43,11 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Employee.cs" />
+    <Compile Include="Interfaces\IProduct.cs" />
+    <Compile Include="Interfaces\IWarehouse.cs" />
+    <Compile Include="Products\BulkProduct.cs" />
+    <Compile Include="Products\DimensionalProduct.cs" />
+    <Compile Include="Products\LiquidProduct.cs" />
+    <Compile Include="Products\PieceProduct.cs" />
+    <Compile Include="Products\Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Warehouse\ClosedWarehouse.cs" />
+    <Compile Include="Warehouse\OpenWarehouse.cs" />
+    <Compile Include="Warehouse\Warehouse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

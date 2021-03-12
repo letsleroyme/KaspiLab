@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaspiLab1", "KaspiLab1\Kasp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaspiLab2", "KaspiLab2\KaspiLab2.csproj", "{67879FD0-27A1-48A6-9DDE-74F95EFD5845}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3", "Lab3\Lab3.csproj", "{E1BFBD90-9D3E-4068-98AF-2B95D6FB5D7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{67879FD0-27A1-48A6-9DDE-74F95EFD5845}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67879FD0-27A1-48A6-9DDE-74F95EFD5845}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67879FD0-27A1-48A6-9DDE-74F95EFD5845}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1BFBD90-9D3E-4068-98AF-2B95D6FB5D7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1BFBD90-9D3E-4068-98AF-2B95D6FB5D7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1BFBD90-9D3E-4068-98AF-2B95D6FB5D7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1BFBD90-9D3E-4068-98AF-2B95D6FB5D7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

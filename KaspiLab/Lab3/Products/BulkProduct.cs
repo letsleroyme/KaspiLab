@@ -10,5 +10,11 @@ namespace Lab3.Products
     {
         private double _cost;
         public override double Cost { get => _cost; set => _cost = value; }
+
+        public BulkProduct(string name, string sku, string description, double cost) : base(name, sku, description)
+        {
+            Cost = cost;
+        }
+
     }
 }

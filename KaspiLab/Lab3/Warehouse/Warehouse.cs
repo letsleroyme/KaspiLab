@@ -5,16 +5,48 @@ using System.Text;
 using System.Threading.Tasks;
 using Lab3.Products;
 
-namespace Lab3.Warehouse
+namespace Lab3
 {
     abstract class Warehouse
     {
-        public string Adress;
-        public int Square;
+        public string Adress { get; protected set; }
+        public int Square { get; protected set; }
+        public Warehouse(string adress, int square)
+        {
+            Adress = adress; Square = square;
+            Products = new List<Product>();
+            AddProducttoDict();
+        }
+
         //private int _productCount;
         public int ProductCount => Products.Count;
 
-        public Employee Worker;
+
+
+        public Dictionary<Product, int> ProductDict = new Dictionary<Product, int>();
+
+        protected void AddProducttoDict()
+        {
+            foreach (var pr in Products)
+            {
+                if (ProductDict.ContainsKey(pr))
+                {
+                    ProductDict[pr]++;
+                }
+                else
+                {
+                    ProductDict.Add(pr, 1);
+                }
+            }
+        }
+
+
+
+
+
+
+        public Employee Worker { get; protected set; }
+
 
         protected List<Product> Products { get; set; }
         //public abstract List<Product> Products { get; set; }
@@ -31,34 +63,51 @@ namespace Lab3.Warehouse
             return totalcost;
         }
 
-        public void MoveProduct(List<Product> products, Warehouse warehouse)
+        public void MoveProduct(Product product, Warehouse warehouse, int count = 1)
         {
-            foreach (var pr in Products)
+            if (!Products.Contains(product))
+                return;
+            for (int i = 0; i < count; i++)
             {
-                Products.Remove(products.Where(x => x == pr).FirstOrDefault());
-                warehouse.AddProduct(pr);
+                foreach (var pr in Products.ToList())
+                {
+                    Products.Remove(product);
+                    warehouse.AddProduct(pr);
+                }
             }
+            AddProducttoDict();
+
         }
 
-        public Product SearchProduct(string sku)
+        public string SearchProductString(string sku)
         {
-            return Products.Where(x => x.SKU == sku).FirstOrDefault();
+            
+            if (!Products.Any(x => x.SKU == sku))
+                return "Не найдено";
+            return Products.Where(x => x.SKU == sku).FirstOrDefault().ToString();
         }
+
+
+        public Product SearchProduct(Product product)
+        {
+            //int productCount = Products.Where(x => x.SKU == sku).Count();
+            if (!Products.Contains(product))
+                return null;
+            return Products.Where(x => x == product).FirstOrDefault();
+        }
+
 
         public void SetEmployee(Employee emp)
         {
             Worker = emp;
         }
 
-        public Warehouse SearchWareHouse()
-        {
-            return this;
-        }
 
         public override string ToString()
         {
             string type = this is ClosedWarehouse ? "Крытый склад" : "Открытый склад";
-            return $"Адрес склада: {Adress}, площадь: {Square}. Количество товаров: {ProductCount}. Тип склада: {type} \r\n Ответсвенный сотрудник: {Worker.ToString()}";
+            string employee = Worker?.ToString() ?? "Не назначен";
+            return $"Адрес склада: {Adress}, площадь: {Square}. Количество товаров: {ProductCount}. Тип склада: {type} \r\n Ответсвенный сотрудник: {employee}";
         }
     }
 }
