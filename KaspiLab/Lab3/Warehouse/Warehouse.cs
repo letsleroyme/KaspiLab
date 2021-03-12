@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lab3.Products;
+using Lab3.Interfaces;
 
 namespace Lab3
 {
-    abstract class Warehouse
+    abstract class Warehouse : IWarehouse
     {
         public string Adress { get; protected set; }
         public int Square { get; protected set; }

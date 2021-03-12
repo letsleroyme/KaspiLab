@@ -9,8 +9,8 @@ namespace Lab3.Interfaces
     interface IWarehouse
     {
         void AddProduct(Product product);
-        Product MoveProduct(Product product);
-        Product SearchProduct(string sku);
+        void MoveProduct(Product product, Warehouse warehouse, int count = 1);
+        string SearchProductString(string sku);
         double Calculate();
         void SetEmployee(Employee emp);
 
