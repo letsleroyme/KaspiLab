@@ -10,91 +10,56 @@ namespace Lab3
 {
     abstract class Warehouse : IWarehouse
     {
-        public string Adress { get; protected set; }
+        public Adress WarehouseAdress { get; protected set; }
+        public Employee Worker { get; protected set; }
+        protected List<Product> Products { get; set; }
+
         public int Square { get; protected set; }
-        public Warehouse(string adress, int square)
+        public Warehouse(Adress adress, int square)
         {
-            Adress = adress; Square = square;
-            Products = new List<Product>();
-            AddProducttoDict();
+            WarehouseAdress = adress; Square = square;
         }
 
-        //private int _productCount;
-        public int ProductCount => Products.Count;
-
-
+        public int ProductCount => ProductDict.Sum(x => x.Value);
 
         public Dictionary<Product, int> ProductDict = new Dictionary<Product, int>();
 
-        protected void AddProducttoDict()
-        {
-            foreach (var pr in Products)
-            {
-                if (ProductDict.ContainsKey(pr))
-                {
-                    ProductDict[pr]++;
-                }
-                else
-                {
-                    ProductDict.Add(pr, 1);
-                }
-            }
-        }
-
-
-
-
-
-
-        public Employee Worker { get; protected set; }
-
-
-        protected List<Product> Products { get; set; }
-        //public abstract List<Product> Products { get; set; }
-
-        public abstract void AddProduct(Product product);
+        public abstract void AddProduct(Product product, int count = 1);
 
 
         public double Calculate()
         {
             double totalcost = 0;
-            foreach (var product in Products)
-                totalcost += product.Cost;
-
+            foreach (var pr in ProductDict)
+            {
+                totalcost += pr.Value * pr.Key.Cost;
+            }
             return totalcost;
         }
 
         public void MoveProduct(Product product, Warehouse warehouse, int count = 1)
         {
-            if (!Products.Contains(product))
+            if (!ProductDict.ContainsKey(product))
                 return;
-            for (int i = 0; i < count; i++)
-            {
-                foreach (var pr in Products.ToList())
-                {
-                    Products.Remove(product);
-                    warehouse.AddProduct(pr);
-                }
-            }
-            AddProducttoDict();
-
+            if (ProductDict[product] - count < 0)
+                throw new Exception("Вы пытаетесь перенести слишком большое кол-во товаров со склада! Столько товаров на складе нет!");
+            ProductDict[product] -= count;
+            warehouse.AddProduct(product, count);
         }
 
         public string SearchProductString(string sku)
         {
             
-            if (!Products.Any(x => x.SKU == sku))
-                return "Не найдено";
-            return Products.Where(x => x.SKU == sku).FirstOrDefault().ToString();
+            if (ProductDict.Any(x => x.Key.SKU == sku))
+                return Products.Where(x => x.SKU == sku).First().ToString();
+            return "Не найдено";
+
         }
 
 
-        public Product SearchProduct(Product product)
+        public bool SearchProduct(Product product)
         {
-            //int productCount = Products.Where(x => x.SKU == sku).Count();
-            if (!Products.Contains(product))
-                return null;
-            return Products.Where(x => x == product).FirstOrDefault();
+            return ProductDict.ContainsKey(product);
         }
 
 
@@ -108,7 +73,7 @@ namespace Lab3
         {
             string type = this is ClosedWarehouse ? "Крытый склад" : "Открытый склад";
             string employee = Worker?.ToString() ?? "Не назначен";
-            return $"Адрес склада: {Adress}, площадь: {Square}. Количество товаров: {ProductCount}. Тип склада: {type} \r\n Ответсвенный сотрудник: {employee}";
+            return $"Адрес склада: {WarehouseAdress.ToString()}, площадь: {Square}. Количество товаров: {ProductCount}. Тип склада: {type} \r\n Ответсвенный сотрудник: {employee}";
         }
     }
 }

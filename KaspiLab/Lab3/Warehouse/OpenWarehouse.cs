@@ -10,19 +10,24 @@ namespace Lab3
 {
     class OpenWarehouse : Warehouse
     {
-        public OpenWarehouse(string adress, int square) : base(adress, square)
+        public OpenWarehouse(Adress adress, int square) : base(adress, square)
         {
 
         }
 
 
-        public override void AddProduct(Product product)
+        public override void AddProduct(Product product, int count = 1)
         {
             if (!(product is BulkProduct))
             {
-                Products.Add(product);
-                AddProducttoDict();
-
+                if (!ProductDict.ContainsKey(product))
+                {
+                    ProductDict.Add(product, count);
+                }
+                else
+                {
+                    ProductDict[product] += count;
+                }
             }
 
         }

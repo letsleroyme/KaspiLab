@@ -17,11 +17,17 @@ namespace Lab3
             Employee emp3 = new Employee("Александр Александрович Александров", "Старший складской рабочий");
 
             Warehouse[] warehouses = new Warehouse[4];
-            
-            warehouses[0] = new ClosedWarehouse("ул. Иванова", 100);
-            warehouses[1] = new ClosedWarehouse("ул. Петрова", 90);
-            warehouses[2] = new OpenWarehouse("ул. Никитина", 80);
-            warehouses[3] = new OpenWarehouse("ул. Васильева", 70);
+
+            var adress1 = new Adress("Страна1", "Район1", "Город1", "Улица1", "1");
+            var adress2 = new Adress("Страна2", "Район2", "Город2", "Улица2", "2");
+            var adress3 = new Adress("Страна3", "Район3", "Город3", "Улица3", "3");
+            var adress4 = new Adress("Страна4", "Район4", "Город4", "Улица4", "4");
+
+
+            warehouses[0] = new ClosedWarehouse(adress1, 100);
+            warehouses[1] = new ClosedWarehouse(adress2, 90);
+            warehouses[2] = new OpenWarehouse(adress3, 80);
+            warehouses[3] = new OpenWarehouse(adress4, 70);
 
             warehouses[0].SetEmployee(emp1);
             warehouses[1].SetEmployee(emp2);
@@ -35,44 +41,52 @@ namespace Lab3
             products[4] = new BulkProduct("Гравий", "005", "Описание", 5.00);
             foreach(var ware in warehouses)
             {
+                int i = 1;
                 foreach(var product in products)
                 {
-                    ware.AddProduct(product);
+                    ware.AddProduct(product, i);
+                    i++;
                 }
                 Console.WriteLine($"Количество продуктов на складе: {ware.ProductCount}");
             }
-
-            warehouses[0].MoveProduct(products[0], warehouses[2]);
-            double totalcost = 0.0;
-
-            foreach (var ware in warehouses)
+            try
             {
-                Console.WriteLine($"Количество продуктов на складе: {ware.ProductCount}");
-                Console.WriteLine(ware.ToString());
-                totalcost += ware.Calculate();
+                warehouses[0].MoveProduct(products[0], warehouses[2]);
+                double totalcost = 0.0;
+
+                foreach (var ware in warehouses)
+                {
+                    Console.WriteLine($"Количество продуктов на складе: {ware.ProductCount}");
+                    Console.WriteLine(ware.ToString());
+                    totalcost += ware.Calculate();
+                }
+                Console.WriteLine(warehouses[0].SearchProductString("010"));
+
+                Console.WriteLine($"Сумма всех товаров на складе: {warehouses[0].Calculate()}");
+
+                warehouses[1].MoveProduct(products[3], warehouses[2], 3);
+
+
+                Console.WriteLine(warehouses[0].ToString());
+                Console.WriteLine();
+                Console.WriteLine();
+
+                Console.WriteLine(warehouses[2].ToString());
+
+                Console.WriteLine(GetWarehouse(new List<Warehouse>(warehouses), products[0], 1)?.ToString() ?? "Склад не найден");
+
+                Console.WriteLine($"Итоговое стоимость всех товаров на всех складах: {totalcost}");
+
+
+                Console.ReadKey();
+
+
             }
-            Console.WriteLine(warehouses[0].SearchProductString("010"));
-
-            Console.WriteLine($"Сумма всех товаров на складе: {warehouses[0].Calculate()}");
-
-            warehouses[0].MoveProduct(products[0], warehouses[2], 11);
-
-
-            Console.WriteLine(warehouses[0].ToString());
-            Console.WriteLine();
-            Console.WriteLine();
-
-            Console.WriteLine(warehouses[2].ToString());
-
-            Console.WriteLine(GetWarehouse(new List<Warehouse>(warehouses), products[0], 1)?.ToString() ?? "Склад не найден");
-
-            Console.WriteLine($"Итоговое стоимость всех товаров на всех складах: {totalcost}");
-
-
-            Console.ReadKey();
-
-
-
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                Console.ReadKey();
+            }
 
 
 

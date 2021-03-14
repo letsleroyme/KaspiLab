@@ -25,8 +25,6 @@ namespace Lab3
         {
             return $"Название продукта: {Name}, код: {SKU}, описание: {Description}, стоимость: {Cost}";
         }
-
-
     }
 
  

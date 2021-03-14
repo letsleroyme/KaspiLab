@@ -10,18 +10,22 @@ namespace Lab3
 {
     class ClosedWarehouse : Warehouse
     {
-        //private List<Product> _products;
-        //public override List<Product> Products { get => _products; set => _products = value; }
-        public ClosedWarehouse(string adress, int square) : base(adress, square) 
+        public ClosedWarehouse(Adress adress, int square) : base(adress, square) 
         {
             
         }
 
 
-        public override void AddProduct(Product product)
+        public override void AddProduct(Product product, int count = 1)
         {
-            base.Products.Add(product);
-            AddProducttoDict();
+            if (!ProductDict.ContainsKey(product))
+            {
+                ProductDict.Add(product, count);
+            }
+            else
+            {
+                ProductDict[product] += count;
+            }
 
         }
     }
