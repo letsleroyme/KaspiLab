@@ -29,6 +29,10 @@ namespace Lab3
                     ProductDict[product] += count;
                 }
             }
+            else
+            {
+                throw new Exception("Вы не можете хранить сыпучие продукты на открытых складах!");
+            }
 
         }
 
