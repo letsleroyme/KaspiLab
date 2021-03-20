@@ -10,6 +10,11 @@ namespace Lab3
 {
     abstract class Warehouse : IWarehouse
     {
+        public delegate void WarehouseHandler(object sender, WarehouseEventArgs e);
+        public event WarehouseHandler AddCorrectPoduct;
+        public event WarehouseHandler AddIncorrectPoduct;
+
+
         public Adress WarehouseAdress { get; protected set; }
         public Employee Worker { get; protected set; }
         protected List<Product> Products { get; set; }
@@ -24,7 +29,46 @@ namespace Lab3
 
         public Dictionary<Product, int> ProductDict = new Dictionary<Product, int>();
 
-        public abstract void AddProduct(Product product, int count = 1);
+        public void AddProduct(Product product, int count = 1)
+        {
+            /*if (!(product is BulkProduct) && !(this is OpenWarehouse))
+            {
+                if (!ProductDict.ContainsKey(product))
+                {
+                    ProductDict.Add(product, count);
+                }
+                else
+                {
+                    ProductDict[product] += count;
+                }
+                AddCorrectPoduct?.Invoke(this, new WarehouseEventArgs("Открытый склад", "Добавление корректного товара", product.Name, DateTime.Now));
+            }
+            else
+            {
+                AddIncorrectPoduct?.Invoke(this, new WarehouseEventArgs("Открытый склад", "Добавление некорректного товара", product.Name, DateTime.Now));
+                throw new Exception("Вы не можете хранить сыпучие продукты на открытых складах!");
+            }*/
+
+            if ((product is BulkProduct) && (this is OpenWarehouse))
+            {
+                AddIncorrectPoduct?.Invoke(this, new WarehouseEventArgs("Открытый склад", "Добавление некорректного товара", product.Name, DateTime.Now));
+                throw new Exception("Вы не можете хранить сыпучие продукты на открытых складах!");
+            }
+            else
+            {
+                if (!ProductDict.ContainsKey(product))
+                {
+                    ProductDict.Add(product, count);
+                }
+                else
+                {
+                    ProductDict[product] += count;
+                }
+                AddCorrectPoduct?.Invoke(this, new WarehouseEventArgs("Открытый склад", "Добавление корректного товара", product.Name, DateTime.Now));
+            }
+        }
+
+        
 
 
         public double Calculate()

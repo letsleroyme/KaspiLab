@@ -39,18 +39,34 @@ namespace Lab3
             products[2] = new LiquidProduct("Нефть", "003", "Баррель нефти", 3.00);
             products[3] = new DimensionalProduct("Тонна металаа", "004", "Описание", 4.00);
             products[4] = new BulkProduct("Гравий", "005", "Описание", 5.00);
-            foreach(var ware in warehouses)
-            {
-                int i = 1;
-                foreach(var product in products)
+            try 
+            { 
+                foreach (var ware in warehouses)
                 {
-                    ware.AddProduct(product, i);
-                    i++;
+                    ware.AddCorrectPoduct += ShowMsg;
+                    ware.AddIncorrectPoduct += ShowMsg;
+                    ware.AddIncorrectPoduct += ShowMsg2;
+                    ware.AddProduct(products[1], 10);
+                    ware.AddProduct(products[3], 200);
+
+                    /*int i = 1;
+                    foreach(var product in products)
+                    {
+                        ware.AddProduct(product, i);
+                        i++;
+                    }
+                    Console.WriteLine($"Количество продуктов на складе: {ware.ProductCount}");*/
+                    ware.AddCorrectPoduct -= ShowMsg;
+                    ware.AddIncorrectPoduct -= ShowMsg2;
+
                 }
-                Console.WriteLine($"Количество продуктов на складе: {ware.ProductCount}");
-            }
-            try
-            {
+
+                warehouses[0].AddProduct(products[0], 10);
+                warehouses[2].AddProduct(products[3], 200);
+                warehouses[3].AddProduct(products[4], 200);
+
+
+
                 warehouses[0].MoveProduct(products[0], warehouses[2]);
                 double totalcost = 0.0;
 
@@ -91,6 +107,12 @@ namespace Lab3
 
 
         }
+
+        private static void Ware_AddCorrectPoduct(object sender, WarehouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         public static Warehouse GetWarehouse(List<Warehouse> warehouses, Product product, int count = 1)
         {
             foreach (var ware in warehouses)
@@ -100,5 +122,17 @@ namespace Lab3
             }
             return null;
         }
+
+        public static void ShowMsg(object sender, WarehouseEventArgs e)
+        {
+            Console.WriteLine($"Добавление на склад: {e.WarehouseName}, тип события: {e.TypeOfEvent}, товар: {e.ProductName}, дата: {e?.Time.ToString()}");
+        }
+
+        public static void ShowMsg2(object sender, WarehouseEventArgs e)
+        {
+            Console.WriteLine("!!! ОБРАБОТЧИК 2  !!!");
+        }
+
+
     }
 }

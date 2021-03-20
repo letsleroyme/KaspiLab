@@ -16,7 +16,7 @@ namespace Lab3
         }
 
 
-        public override void AddProduct(Product product, int count = 1)
+        /*public override void AddProduct(Product product, int count = 1)
         {
             if (!ProductDict.ContainsKey(product))
             {
@@ -27,6 +27,6 @@ namespace Lab3
                 ProductDict[product] += count;
             }
 
-        }
+        }*/
     }
 }
