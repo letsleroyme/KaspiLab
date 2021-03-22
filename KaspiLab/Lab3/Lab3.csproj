@@ -51,8 +51,10 @@
     <Compile Include="Products\LiquidProduct.cs" />
     <Compile Include="Products\PieceProduct.cs" />
     <Compile Include="Products\Product.cs" />
+    <Compile Include="Extensions\ProductExtension.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\Reports.cs" />
     <Compile Include="Warehouse\ClosedWarehouse.cs" />
     <Compile Include="Warehouse\OpenWarehouse.cs" />
     <Compile Include="Warehouse\Warehouse.cs" />

@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lab3.Products;
-using Lab3.Interfaces;
 
 namespace Lab3
 {
-    class OpenWarehouse : Warehouse
+    static class ProductExtension
     {
-        public OpenWarehouse(Adress adress, int square) : base(adress, square)
+        public static string GetName(this Product product) 
         {
-
+            return $"{product.SKU} - {product.Name}";
         }
     }
 }

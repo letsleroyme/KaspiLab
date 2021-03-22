@@ -12,21 +12,7 @@ namespace Lab3
     {
         public ClosedWarehouse(Adress adress, int square) : base(adress, square) 
         {
-            
         }
 
-
-        /*public override void AddProduct(Product product, int count = 1)
-        {
-            if (!ProductDict.ContainsKey(product))
-            {
-                ProductDict.Add(product, count);
-            }
-            else
-            {
-                ProductDict[product] += count;
-            }
-
-        }*/
     }
 }

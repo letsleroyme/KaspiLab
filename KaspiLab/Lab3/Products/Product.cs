@@ -11,9 +11,6 @@ namespace Lab3
         public string Name { get; protected set; }
         public string SKU { get; protected set; }
         public string Description { get; protected set; }
-
-        
-
         public abstract double Cost { get; set; }
 
         public Product(string name, string sku, string description)

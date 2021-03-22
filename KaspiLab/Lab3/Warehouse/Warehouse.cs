@@ -31,24 +31,6 @@ namespace Lab3
 
         public void AddProduct(Product product, int count = 1)
         {
-            /*if (!(product is BulkProduct) && !(this is OpenWarehouse))
-            {
-                if (!ProductDict.ContainsKey(product))
-                {
-                    ProductDict.Add(product, count);
-                }
-                else
-                {
-                    ProductDict[product] += count;
-                }
-                AddCorrectPoduct?.Invoke(this, new WarehouseEventArgs("Открытый склад", "Добавление корректного товара", product.Name, DateTime.Now));
-            }
-            else
-            {
-                AddIncorrectPoduct?.Invoke(this, new WarehouseEventArgs("Открытый склад", "Добавление некорректного товара", product.Name, DateTime.Now));
-                throw new Exception("Вы не можете хранить сыпучие продукты на открытых складах!");
-            }*/
-
             if ((product is BulkProduct) && (this is OpenWarehouse))
             {
                 AddIncorrectPoduct?.Invoke(this, new WarehouseEventArgs("Открытый склад", "Добавление некорректного товара", product.Name, DateTime.Now));

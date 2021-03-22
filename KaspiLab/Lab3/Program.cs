@@ -63,11 +63,11 @@ namespace Lab3
 
                 warehouses[0].AddProduct(products[0], 10);
                 warehouses[2].AddProduct(products[3], 200);
-                warehouses[3].AddProduct(products[4], 200);
+                warehouses[3].AddProduct(products[1], 200);
 
 
 
-                warehouses[0].MoveProduct(products[0], warehouses[2]);
+               // warehouses[0].MoveProduct(products[0], warehouses[2]);
                 double totalcost = 0.0;
 
                 foreach (var ware in warehouses)
@@ -80,7 +80,7 @@ namespace Lab3
 
                 Console.WriteLine($"Сумма всех товаров на складе: {warehouses[0].Calculate()}");
 
-                warehouses[1].MoveProduct(products[3], warehouses[2], 3);
+                //warehouses[1].MoveProduct(products[3], warehouses[2], 3);
 
 
                 Console.WriteLine(warehouses[0].ToString());
@@ -93,7 +93,10 @@ namespace Lab3
 
                 Console.WriteLine($"Итоговое стоимость всех товаров на всех складах: {totalcost}");
 
-
+                foreach (var res in Reports.AvarageProduct(new List<Warehouse>(warehouses)))
+                {
+                    Console.WriteLine($"{res.Key} - {res.Value}");
+                }
                 Console.ReadKey();
 
 
@@ -132,6 +135,38 @@ namespace Lab3
         {
             Console.WriteLine("!!! ОБРАБОТЧИК 2  !!!");
         }
+
+
+        public static Dictionary<Product, int> GetUnionProducts(List<Warehouse> warehouses)
+        {
+            var res = new Dictionary<Product, int>();
+            foreach (var warehouse in warehouses)
+            {
+                foreach (var ware in warehouse.ProductDict)
+                {
+                    if (res.ContainsKey(ware.Key))
+                        res.Add(ware.Key, ware.Value);
+                    else
+                        res[ware.Key] += ware.Value;
+                }
+            }
+
+            return res;
+        }
+
+
+        public static void MoveHalfOfProducts(Warehouse warehouse1, Warehouse warehouse2)
+        {
+            foreach (var ware in warehouse1.ProductDict)
+            {
+                if (ware.Value > 1) 
+                {
+                    warehouse1.MoveProduct(ware.Key, warehouse2, ware.Value / 2);
+                }
+            }
+            
+        }
+
 
 
     }
