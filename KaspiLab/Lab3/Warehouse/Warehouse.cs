@@ -17,7 +17,6 @@ namespace Lab3
 
         public Adress WarehouseAdress { get; protected set; }
         public Employee Worker { get; protected set; }
-        protected List<Product> Products { get; set; }
 
         public int Square { get; protected set; }
         public Warehouse(Adress adress, int square)
@@ -77,7 +76,7 @@ namespace Lab3
         {
             
             if (ProductDict.Any(x => x.Key.SKU == sku))
-                return Products.Where(x => x.SKU == sku).First().ToString();
+                return ProductDict.Where(x => x.Key.SKU == sku).First().ToString();
             return "Не найдено";
 
         }
