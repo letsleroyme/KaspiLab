@@ -98,7 +98,7 @@ namespace Lab3
                     Console.WriteLine($"{res.Key} - {res.Value}");
                 }
                 Console.ReadKey();
-
+                Csv.CsvWrite(warehouses[0], @".\files\");
 
             }
             catch (Exception ex)
@@ -144,7 +144,7 @@ namespace Lab3
             {
                 foreach (var ware in warehouse.ProductDict)
                 {
-                    if (res.ContainsKey(ware.Key))
+                    if (!res.ContainsKey(ware.Key))
                         res.Add(ware.Key, ware.Value);
                     else
                         res[ware.Key] += ware.Value;

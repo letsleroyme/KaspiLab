@@ -46,6 +46,7 @@
     <Compile Include="Adress.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Interfaces\IWarehouse.cs" />
+    <Compile Include="IO\Csv.cs" />
     <Compile Include="Products\BulkProduct.cs" />
     <Compile Include="Products\DimensionalProduct.cs" />
     <Compile Include="Products\LiquidProduct.cs" />
