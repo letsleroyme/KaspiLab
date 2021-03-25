@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adress.cs" />
+    <Compile Include="AllProducts.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Interfaces\IWarehouse.cs" />
     <Compile Include="IO\Csv.cs" />

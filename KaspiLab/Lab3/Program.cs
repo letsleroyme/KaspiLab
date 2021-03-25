@@ -39,6 +39,10 @@ namespace Lab3
             products[2] = new LiquidProduct("Нефть", "003", "Баррель нефти", 3.00);
             products[3] = new DimensionalProduct("Тонна металаа", "004", "Описание", 4.00);
             products[4] = new BulkProduct("Гравий", "005", "Описание", 5.00);
+            AllProducts productsSingletone = AllProducts.GetInstance();
+
+            AddAllProductsToSingleton(new List<Product>(products));
+
             try 
             { 
                 foreach (var ware in warehouses)
@@ -46,8 +50,8 @@ namespace Lab3
                     ware.AddCorrectPoduct += ShowMsg;
                     ware.AddIncorrectPoduct += ShowMsg;
                     ware.AddIncorrectPoduct += ShowMsg2;
-                    ware.AddProduct(products[1], 10);
-                    ware.AddProduct(products[3], 200);
+                    ware.AddProduct(productsSingletone.Products.Keys.ElementAt(1), 10);
+                    ware.AddProduct(productsSingletone.Products.Keys.ElementAt(3), 200);
 
                     /*int i = 1;
                     foreach(var product in products)
@@ -61,9 +65,9 @@ namespace Lab3
 
                 }
 
-                warehouses[0].AddProduct(products[0], 10);
-                warehouses[2].AddProduct(products[3], 200);
-                warehouses[3].AddProduct(products[1], 200);
+                warehouses[0].AddProduct(productsSingletone.Products.Keys.ElementAt(0), 10);
+                warehouses[2].AddProduct(productsSingletone.Products.Keys.ElementAt(1), 200);
+                warehouses[3].AddProduct(productsSingletone.Products.Keys.ElementAt(1), 200);
 
 
 
@@ -98,7 +102,13 @@ namespace Lab3
                     Console.WriteLine($"{res.Key} - {res.Value}");
                 }
                 Console.ReadKey();
+                
+                
+                
+                
+                
                 Csv.CsvWrite(warehouses[0], @".\files\");
+                Csv.WriteAllProducts(@".\files\");
 
             }
             catch (Exception ex)
@@ -132,6 +142,16 @@ namespace Lab3
         {
             Console.WriteLine("!!! ОБРАБОТЧИК 2  !!!");
         }
+
+        public static void AddAllProductsToSingleton(List<Product> prod)
+        {
+            AllProducts products = AllProducts.GetInstance();
+
+            foreach (var pr in prod)
+                products.AddProduct(pr);
+        }
+
+
 
 
         public static Dictionary<Product, int> GetUnionProducts(List<Warehouse> warehouses)
