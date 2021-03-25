@@ -111,16 +111,13 @@ namespace Lab3
 
         }
 
-        private static void Ware_AddCorrectPoduct(object sender, WarehouseEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public static Warehouse GetWarehouse(List<Warehouse> warehouses, Product product, int count = 1)
         {
             foreach (var ware in warehouses)
             {
-                if (ware.ProductDict.ContainsKey(product) && ware.ProductDict.ContainsValue(count))
+                if (ware.ProductDict.ContainsKey(product) && ware.ProductDict.Values.Select(x=>x >= count).FirstOrDefault())
                     return ware;
             }
             return null;

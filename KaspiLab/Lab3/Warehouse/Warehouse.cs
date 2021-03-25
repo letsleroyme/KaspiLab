@@ -14,6 +14,24 @@ namespace Lab3
         public event WarehouseHandler AddCorrectPoduct;
         public event WarehouseHandler AddIncorrectPoduct;
 
+        /// <summary>
+        /// 2 метода реализованы для вызова ивентов в наследованных классах
+        /// </summary>
+        /// <param name="e"></param>
+        protected virtual void OnAddCorrect(WarehouseEventArgs e)
+        {
+            WarehouseHandler handler = AddCorrectPoduct;
+            handler?.Invoke(this, e);
+        }
+
+        protected virtual void OnAddIncorrect(WarehouseEventArgs e)
+        {
+            WarehouseHandler handler = AddIncorrectPoduct;
+            handler?.Invoke(this, e);
+        }
+
+
+
 
         public Adress WarehouseAdress { get; protected set; }
         public Employee Worker { get; protected set; }
@@ -28,29 +46,8 @@ namespace Lab3
 
         public Dictionary<Product, int> ProductDict = new Dictionary<Product, int>();
 
-        public void AddProduct(Product product, int count = 1)
-        {
-            if ((product is BulkProduct) && (this is OpenWarehouse))
-            {
-                AddIncorrectPoduct?.Invoke(this, new WarehouseEventArgs("Открытый склад", "Добавление некорректного товара", product.Name, DateTime.Now));
-                throw new Exception("Вы не можете хранить сыпучие продукты на открытых складах!");
-            }
-            else
-            {
-                if (!ProductDict.ContainsKey(product))
-                {
-                    ProductDict.Add(product, count);
-                }
-                else
-                {
-                    ProductDict[product] += count;
-                }
-                AddCorrectPoduct?.Invoke(this, new WarehouseEventArgs("Открытый склад", "Добавление корректного товара", product.Name, DateTime.Now));
-            }
-        }
-
+        public abstract void AddProduct(Product product, int count = 1);
         
-
 
         public double Calculate()
         {

@@ -14,5 +14,18 @@ namespace Lab3
         {
         }
 
+        public override void AddProduct(Product product, int count = 1)
+        {
+            if (!ProductDict.ContainsKey(product))
+            {
+                ProductDict.Add(product, count);
+            }
+            else
+            {
+                ProductDict[product] += count;
+            }
+            OnAddCorrect(new WarehouseEventArgs("Открытый склад", "Добавление корректного товара", product.Name, DateTime.Now));
+        }
+
     }
 }
