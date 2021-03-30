@@ -43,9 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\CommandAdd.cs" />
     <Compile Include="Adress.cs" />
     <Compile Include="AllProducts.cs" />
+    <Compile Include="Command\Invoker.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="Command\ICommand.cs" />
     <Compile Include="Interfaces\IWarehouse.cs" />
     <Compile Include="IO\Csv.cs" />
     <Compile Include="Products\BulkProduct.cs" />

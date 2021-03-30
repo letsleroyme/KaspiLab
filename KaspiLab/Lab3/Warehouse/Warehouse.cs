@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lab3.Products;
 using Lab3.Interfaces;
 
 namespace Lab3
@@ -18,13 +17,13 @@ namespace Lab3
         /// 2 метода реализованы для вызова ивентов в наследованных классах
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnAddCorrect(WarehouseEventArgs e)
+        public void OnAddCorrect(WarehouseEventArgs e)
         {
             WarehouseHandler handler = AddCorrectPoduct;
             handler?.Invoke(this, e);
         }
 
-        protected virtual void OnAddIncorrect(WarehouseEventArgs e)
+        public virtual void OnAddIncorrect(WarehouseEventArgs e)
         {
             WarehouseHandler handler = AddIncorrectPoduct;
             handler?.Invoke(this, e);

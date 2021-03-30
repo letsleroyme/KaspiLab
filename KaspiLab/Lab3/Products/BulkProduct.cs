@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab3.Products
+namespace Lab3
 {
     class BulkProduct : Product
     {

@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Lab3.Products;
-
 namespace Lab3
 {
     class Program
     {
         static void Main(string[] args)
         {
+            Invoker AddCommandQueue = new Invoker();
             Employee emp1 = new Employee("Иван Иванович Иванов", "Зав. складом");
             Employee emp2 = new Employee("Петр Петрович Петров", "Управляющий");
             Employee emp3 = new Employee("Александр Александрович Александров", "Старший складской рабочий");
@@ -42,16 +41,18 @@ namespace Lab3
             AllProducts productsSingletone = AllProducts.GetInstance();
 
             AddAllProductsToSingleton(new List<Product>(products));
-
+            //AddCommandQueue.SetCommand(new CommandAdd(products[0], ware, 1));
             try 
             { 
                 foreach (var ware in warehouses)
                 {
+                    AddCommandQueue.SetCommand(new CommandAdd(products[1], ware, 1));
+
                     ware.AddCorrectPoduct += ShowMsg;
                     ware.AddIncorrectPoduct += ShowMsg;
                     ware.AddIncorrectPoduct += ShowMsg2;
-                    ware.AddProduct(productsSingletone.Products.Keys.ElementAt(1), 10);
-                    ware.AddProduct(productsSingletone.Products.Keys.ElementAt(3), 200);
+                    //ware.AddProduct(productsSingletone.Products.Keys.ElementAt(1), 10);
+                    //ware.AddProduct(productsSingletone.Products.Keys.ElementAt(3), 200);
 
                     /*int i = 1;
                     foreach(var product in products)
@@ -60,18 +61,29 @@ namespace Lab3
                         i++;
                     }
                     Console.WriteLine($"Количество продуктов на складе: {ware.ProductCount}");*/
-                    ware.AddCorrectPoduct -= ShowMsg;
-                    ware.AddIncorrectPoduct -= ShowMsg2;
+                    //ware.AddCorrectPoduct -= ShowMsg;
+                    //ware.AddIncorrectPoduct -= ShowMsg2;
 
                 }
 
+                AddCommandQueue.AddProduct();
+                AddCommandQueue.AddProduct();
+                AddCommandQueue.AddProduct();
+                AddCommandQueue.AddProduct();
+
+
+
+
+
+
+                /*
                 warehouses[0].AddProduct(productsSingletone.Products.Keys.ElementAt(0), 10);
                 warehouses[2].AddProduct(productsSingletone.Products.Keys.ElementAt(1), 200);
-                warehouses[3].AddProduct(productsSingletone.Products.Keys.ElementAt(1), 200);
+                warehouses[3].AddProduct(productsSingletone.Products.Keys.ElementAt(1), 200);*/
 
 
 
-               // warehouses[0].MoveProduct(products[0], warehouses[2]);
+                // warehouses[0].MoveProduct(products[0], warehouses[2]);
                 double totalcost = 0.0;
 
                 foreach (var ware in warehouses)
