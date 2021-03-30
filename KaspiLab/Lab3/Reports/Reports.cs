@@ -18,6 +18,14 @@ namespace Lab3
         {
             return warehouse.ProductDict.Where(x => x.Value < 3).OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
         }
+
+        public static async Task<Dictionary<Product, int>> ProductsLessThan3Async(Warehouse warehouse)
+        {
+             return await Task.Run(()=> ProductsLessThan3(warehouse));
+        }
+
+
+
         /// <summary>
         /// список уникальных наименований товаров на складе (сортировка по ноименованию)
         /// </summary>
@@ -27,6 +35,14 @@ namespace Lab3
         {
             return warehouse.ProductDict.Distinct().ToDictionary(x => x.Key, x => x.Value);
         }
+
+        public static async Task<Dictionary<Product, int>> UniqueProductsAsync(Warehouse warehouse)
+        {
+            return await Task.Run(() => UniqueProducts(warehouse));
+        }
+
+
+
         /// <summary>
         ///  первые 3 товара в наибольшем количестве на складе
         /// </summary>
@@ -36,6 +52,13 @@ namespace Lab3
         {
             return warehouse.ProductDict.OrderByDescending(x => x.Value).Take(3).ToDictionary(x => x.Key, x => x.Value);
         }
+
+        public static async Task<Dictionary<Product, int>> Top3ProductCountAsync(Warehouse warehouse)
+        {
+            return await Task.Run(() => Top3ProductCount(warehouse));
+        }
+
+
         /// <summary>
         ///  список складов, на которых нет сыпучих продуктов
         /// </summary>
@@ -46,6 +69,13 @@ namespace Lab3
             return warehouses.Select(x => x).OfType<ClosedWarehouse>().Cast<Warehouse>().ToList();
             
         }
+
+        public static async Task<List<Warehouse>> GetWarehouseNoBulkProductsAsync(List<Warehouse> warehouses)
+        {
+            return await Task.Run(() => GetWarehouseNoBulkProducts(warehouses));
+        }
+
+
         /// <summary>
         ///  список складов, на которых нет жидких продуктов
         /// </summary>
@@ -72,6 +102,14 @@ namespace Lab3
             return res;
         }
 
+        public static async Task<List<Warehouse>> GetWarehouseNoLiquidProductsAsync(List<Warehouse> warehouses)
+        {
+            return await Task.Run(() => GetWarehouseNoLiquidProducts(warehouses));
+        }
+
+
+
+
         /// <summary>
         /// среднее количество товара на всех складах, в формате товар - среднее количество
         /// </summary>
@@ -85,7 +123,11 @@ namespace Lab3
                 .ToDictionary(g => g.Key, g => g.Average(k => k.Value));
         }
 
-
+        public static async Task<Dictionary<Product, double>> AvarageProductAsync(List<Warehouse> warehouses)
+        {
+            return await Task.Run(() => AvarageProduct(warehouses));
+            
+        }
 
     }
 }

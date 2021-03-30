@@ -12,6 +12,11 @@ namespace Lab3
         private Product _Product;
         private int _Count;
 
+
+        public delegate void CommandAddDelegate(object sender, WarehouseEventArgs e);
+        public event CommandAddDelegate AddCorrectProduct;
+        public event CommandAddDelegate AddIncorrectProduct;
+
         public CommandAdd(Product product, Warehouse warehouse, int count = 1)
         {
             _Product = product;
@@ -22,15 +27,17 @@ namespace Lab3
 
         public void Execute()
         {
-            if (!(_Warehouse is OpenWarehouse) && !(_Product is BulkProduct))
+            if ((_Warehouse is OpenWarehouse) && (_Product is BulkProduct))
             {
-                _Warehouse.AddProduct(_Product, _Count);
-                _Warehouse.OnAddCorrect(new WarehouseEventArgs(_Warehouse.WarehouseAdress.ToString(), "Добавление товара через комманду", _Product.Name, DateTime.Now));
+                AddIncorrectProduct?.Invoke(this, new WarehouseEventArgs("Открытый склад", "Добавление некорректного товара через комманду", _Product.Name, DateTime.Now));
+                throw new Exception("Вы не можете хранить сыпучие продукты на открытых складах!");
             }
             else
             {
-                _Warehouse.OnAddIncorrect(new WarehouseEventArgs("Открытый склад", "Добавление некорректного товара чеоез комманду", _Product.Name, DateTime.Now));
-                throw new Exception("Вы не можете хранить сыпучие продукты на открытых складах!");
+                _Warehouse.AddProduct(_Product, _Count);
+                AddCorrectProduct?.Invoke(this, new WarehouseEventArgs(_Warehouse.GetType().Name, "Добавление товара через комманду", _Product.Name, DateTime.Now));
+
+
             }
             
         }

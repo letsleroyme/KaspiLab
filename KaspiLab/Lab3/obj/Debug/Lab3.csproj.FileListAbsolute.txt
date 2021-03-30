@@ -1,7 +1,6 @@
 C:\Users\Buki\Desktop\kaspi\KaspiLab\Lab3\bin\Debug\Lab3.exe.config
 C:\Users\Buki\Desktop\kaspi\KaspiLab\Lab3\bin\Debug\Lab3.exe
 C:\Users\Buki\Desktop\kaspi\KaspiLab\Lab3\bin\Debug\Lab3.pdb
-C:\Users\Buki\Desktop\kaspi\KaspiLab\Lab3\obj\Debug\Lab3.csprojAssemblyReference.cache
 C:\Users\Buki\Desktop\kaspi\KaspiLab\Lab3\obj\Debug\Lab3.csproj.CoreCompileInputs.cache
 C:\Users\Buki\Desktop\kaspi\KaspiLab\Lab3\obj\Debug\Lab3.exe
 C:\Users\Buki\Desktop\kaspi\KaspiLab\Lab3\obj\Debug\Lab3.pdb

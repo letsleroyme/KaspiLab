@@ -46,6 +46,7 @@
     <Compile Include="Command\CommandAdd.cs" />
     <Compile Include="Adress.cs" />
     <Compile Include="AllProducts.cs" />
+    <Compile Include="Command\CommandQueueEventArgs.cs" />
     <Compile Include="Command\Invoker.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Command\ICommand.cs" />

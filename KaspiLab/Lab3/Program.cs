@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Lab3
 {
     class Program
     {
-        static void Main(string[] args)
+        static object locker = new object();
+        static async Task Main(string[] args)
         {
             Invoker AddCommandQueue = new Invoker();
+            AddCommandQueue.QueueAdd += QueueEventEncounter;
+            AddCommandQueue.QueueExecute += QueueEventEncounter;
             Employee emp1 = new Employee("Иван Иванович Иванов", "Зав. складом");
             Employee emp2 = new Employee("Петр Петрович Петров", "Управляющий");
             Employee emp3 = new Employee("Александр Александрович Александров", "Старший складской рабочий");
@@ -38,13 +42,35 @@ namespace Lab3
             products[2] = new LiquidProduct("Нефть", "003", "Баррель нефти", 3.00);
             products[3] = new DimensionalProduct("Тонна металаа", "004", "Описание", 4.00);
             products[4] = new BulkProduct("Гравий", "005", "Описание", 5.00);
-            AllProducts productsSingletone = AllProducts.GetInstance();
-
             AddAllProductsToSingleton(new List<Product>(products));
-            //AddCommandQueue.SetCommand(new CommandAdd(products[0], ware, 1));
+            
+            foreach(var ware in warehouses)
+            {
+                ware.AddCorrectPoduct += ShowMsg;
+                ware.AddIncorrectPoduct += ShowMsg; 
+            }
+
+
+            //async test
+
+            var result = await Reports.GetWarehouseNoBulkProductsAsync(new List<Warehouse>(warehouses)).ConfigureAwait(false);
+
+            
+            // async test end
+
             try 
-            { 
-                foreach (var ware in warehouses)
+            {
+
+                AllProducts productsSingletone = AllProducts.GetInstance();
+                Task TaskAdd = new Task(() => AddToQueue(new List<Warehouse>(warehouses), AddCommandQueue));
+                TaskAdd.Start();
+                TaskAdd.Wait();
+                Task TaskQueueProcessing = new Task(() => ProcessQueue(AddCommandQueue));
+                TaskQueueProcessing.Start();
+
+
+
+                /*foreach (var ware in warehouses)
                 {
                     AddCommandQueue.SetCommand(new CommandAdd(products[1], ware, 1));
 
@@ -60,33 +86,23 @@ namespace Lab3
                         ware.AddProduct(product, i);
                         i++;
                     }
-                    Console.WriteLine($"Количество продуктов на складе: {ware.ProductCount}");*/
+                    Console.WriteLine($"Количество продуктов на складе: {ware.ProductCount}");
                     //ware.AddCorrectPoduct -= ShowMsg;
                     //ware.AddIncorrectPoduct -= ShowMsg2;
 
-                }
+                }*/
 
+                /*AddCommandQueue.AddProduct();
                 AddCommandQueue.AddProduct();
                 AddCommandQueue.AddProduct();
-                AddCommandQueue.AddProduct();
-                AddCommandQueue.AddProduct();
-
-
-
-
-
-
-                /*
-                warehouses[0].AddProduct(productsSingletone.Products.Keys.ElementAt(0), 10);
-                warehouses[2].AddProduct(productsSingletone.Products.Keys.ElementAt(1), 200);
-                warehouses[3].AddProduct(productsSingletone.Products.Keys.ElementAt(1), 200);*/
+                AddCommandQueue.AddProduct();*/
 
 
 
                 // warehouses[0].MoveProduct(products[0], warehouses[2]);
-                double totalcost = 0.0;
+                //double totalcost = 0.0;
 
-                foreach (var ware in warehouses)
+                /*foreach (var ware in warehouses)
                 {
                     Console.WriteLine($"Количество продуктов на складе: {ware.ProductCount}");
                     Console.WriteLine(ware.ToString());
@@ -113,15 +129,21 @@ namespace Lab3
                 {
                     Console.WriteLine($"{res.Key} - {res.Value}");
                 }
-                Console.ReadKey();
+                
                 
                 
                 
                 
                 
                 Csv.CsvWrite(warehouses[0], @".\files\");
-                Csv.WriteAllProducts(@".\files\");
-
+                Csv.WriteAllProducts(@".\files\");*/
+                
+                TaskQueueProcessing.Wait();
+                Task.WaitAll();
+                foreach (var res in result)
+                {
+                    Console.WriteLine($"{res.ToString()}");
+                }
             }
             catch (Exception ex)
             {
@@ -130,10 +152,11 @@ namespace Lab3
             }
 
 
-
+            Console.ReadKey();
+            
         }
 
-        
+
 
         public static Warehouse GetWarehouse(List<Warehouse> warehouses, Product product, int count = 1)
         {
@@ -155,6 +178,12 @@ namespace Lab3
             Console.WriteLine("!!! ОБРАБОТЧИК 2  !!!");
         }
 
+        public static void QueueEventEncounter(object sender, CommandQueueEventArgs e)
+        {
+            Console.WriteLine($"{e.CommandStatus} - {e.CommandTime}");
+        }
+
+
         public static void AddAllProductsToSingleton(List<Product> prod)
         {
             AllProducts products = AllProducts.GetInstance();
@@ -163,6 +192,28 @@ namespace Lab3
                 products.AddProduct(pr);
         }
 
+        public static void AddToQueue(List<Warehouse> warehouses, Invoker queue)
+        {
+            AllProducts products = AllProducts.GetInstance();
+            foreach (var ware in warehouses)
+            {
+                lock (locker)
+                {
+                    queue.SetCommand(new CommandAdd(products.Products.Keys.ElementAt(3), ware, 1));
+                }
+            }
+        }
+
+        public static void ProcessQueue(Invoker queue)
+        {
+            lock (locker)
+            {
+                while (queue.CheckQueueForNull())
+                {
+                    queue.AddProduct();
+                }
+            }
+        }
 
 
 
@@ -195,8 +246,6 @@ namespace Lab3
             }
             
         }
-
-
 
     }
 }

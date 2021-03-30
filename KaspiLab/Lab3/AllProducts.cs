@@ -9,15 +9,23 @@ namespace Lab3
     class AllProducts
     {
         private AllProducts() { }
+        private static readonly object _lock = new object();
 
         private static AllProducts _instance;
         public static AllProducts GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new AllProducts();
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new AllProducts();
+                    }
+                }
             }
             return _instance;
+
         }
 
         public Dictionary<Product, int> Products = new Dictionary<Product, int>();
