@@ -1,0 +1,7 @@
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiThreads\bin\Debug\KaspiThreads.exe.config
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiThreads\bin\Debug\KaspiThreads.exe
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiThreads\bin\Debug\KaspiThreads.pdb
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiThreads\obj\Debug\KaspiThreads.csprojAssemblyReference.cache
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiThreads\obj\Debug\KaspiThreads.csproj.CoreCompileInputs.cache
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiThreads\obj\Debug\KaspiThreads.exe
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiThreads\obj\Debug\KaspiThreads.pdb

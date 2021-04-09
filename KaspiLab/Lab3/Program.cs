@@ -60,11 +60,13 @@ namespace Lab3
 
             try 
             {
-
+                CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+                CancellationToken token = cancellationTokenSource.Token;
                 AllProducts productsSingletone = AllProducts.GetInstance();
-                Task TaskAdd = new Task(() => AddToQueue(new List<Warehouse>(warehouses), AddCommandQueue));
-                TaskAdd.Start();
-                TaskAdd.Wait();
+                //Task TaskAdd = new Task(() => AddToQueue(new List<Warehouse>(warehouses), AddCommandQueue));
+                Task TasAdd = Task.Factory.StartNew(() => AddToQueue(new List<Warehouse>(warehouses), AddCommandQueue), token);
+                //TaskAdd.Start();
+                //TaskAdd.Wait();
                 Task TaskQueueProcessing = new Task(() => ProcessQueue(AddCommandQueue));
                 TaskQueueProcessing.Start();
 
