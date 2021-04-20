@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\ProductAttribute.cs" />
+    <Compile Include="Attributes\WarehouseAttr.cs" />
     <Compile Include="Command\CommandAdd.cs" />
     <Compile Include="Adress.cs" />
     <Compile Include="AllProducts.cs" />

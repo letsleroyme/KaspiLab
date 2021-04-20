@@ -33,10 +33,11 @@ namespace Lab3
 
 
 
-
+        [WarehouseAttr("Адрес")]
         public Adress WarehouseAdress { get; protected set; }
+        [WarehouseAttr("Работник склада")]
         public Employee Worker { get; protected set; }
-
+        [WarehouseAttr("Площадь")]
         public int Square { get; protected set; }
         public Warehouse(Adress adress, int square)
         {

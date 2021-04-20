@@ -8,3 +8,4 @@ C:\Users\Buki\Desktop\kaspi\KaspiLab\Lab3\bin\Debug\NLog.dll
 C:\Users\Buki\Desktop\kaspi\KaspiLab\Lab3\bin\Debug\NLog.xml
 C:\Users\Buki\Desktop\kaspi\KaspiLab\Lab3\obj\Debug\Lab3.csprojAssemblyReference.cache
 C:\Users\Buki\Desktop\kaspi\KaspiLab\Lab3\obj\Debug\Lab3.csproj.CopyComplete
+C:\Users\Buki\Desktop\kaspi\KaspiLab\Lab3\bin\Debug\NLog.config

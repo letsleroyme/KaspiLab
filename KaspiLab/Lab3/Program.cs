@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Reflection;
 using NLog;
 namespace Lab3
 {
@@ -63,16 +64,14 @@ namespace Lab3
 
             try 
             {
-                CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+                /*CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
                 CancellationToken token = cancellationTokenSource.Token;
                 AllProducts productsSingletone = AllProducts.GetInstance();
                 //Task TaskAdd = new Task(() => AddToQueue(new List<Warehouse>(warehouses), AddCommandQueue));
                 Task TasAdd = Task.Factory.StartNew(() => AddToQueue(new List<Warehouse>(warehouses), AddCommandQueue), token);
-                //TaskAdd.Start();
-                //TaskAdd.Wait();
                 Task TaskQueueProcessing = new Task(() => ProcessQueue(AddCommandQueue));
                 TaskQueueProcessing.Start();
-
+                */
 
 
                 /*foreach (var ware in warehouses)
@@ -141,14 +140,21 @@ namespace Lab3
                 
                 
                 Csv.CsvWrite(warehouses[0], @".\files\");
-                Csv.WriteAllProducts(@".\files\");*/
                 
-                TaskQueueProcessing.Wait();
-                Task.WaitAll();
-                foreach (var res in result)
+
+                //TaskQueueProcessing.Wait();
+
+                //Task.WaitAll();
+                /*foreach (var res in result)
                 {
                     Console.WriteLine($"{res.ToString()}");
-                }
+                }*/
+
+
+                //GetAllClassesInGeneric();
+
+                GetAllStringInterfaces();
+                Csv.WriteAllProducts(@".\files\"); 
             }
             catch (Exception ex)
             {
@@ -252,6 +258,23 @@ namespace Lab3
             }
             
         }
+
+
+        public static void GetAllClassesInGeneric()
+        {
+            var e = AppDomain.CurrentDomain.GetAssemblies()
+                       .SelectMany(t => t.GetTypes())
+                       .Where(t => t.IsClass && t.Namespace == "System.Collections.Generic");
+            e.ToList().ForEach(t => Console.WriteLine(t.Name));
+        }
+
+
+        public static void GetAllStringInterfaces()
+        {
+            var res = typeof(string).GetInterfaces().ToList();
+            res.ToList().ForEach(t => Console.WriteLine(t.Name));
+        }
+
 
     }
 }
