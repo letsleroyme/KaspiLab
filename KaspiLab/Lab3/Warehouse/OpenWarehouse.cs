@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lab3.Interfaces;
+using NLog;
 
 namespace Lab3
 {
     class OpenWarehouse : Warehouse
     {
-        //private event WarehouseHandler AddCorrectPoduct;
-         
+        private Logger log = LogManager.GetCurrentClassLogger();
+
+
         public OpenWarehouse(Adress adress, int square) : base(adress, square)
         {
 
@@ -20,7 +17,7 @@ namespace Lab3
         {
             if ((product is BulkProduct) && (this is OpenWarehouse))
             {
-                
+                log.Error("Вы не можете хранить сыпучие продукты на открытых складах!");
                 OnAddIncorrect(new WarehouseEventArgs("Открытый склад", "Добавление некорректного товара", product.Name, DateTime.Now));
                 throw new Exception("Вы не можете хранить сыпучие продукты на открытых складах!");
             }
@@ -35,12 +32,8 @@ namespace Lab3
                     ProductDict[product] += count;
                 }
                 OnAddCorrect(new WarehouseEventArgs("Открытый склад", "Добавление корректного товара", product.Name, DateTime.Now));
+                log.Debug("Добавление корректного товара");
             }
-        }
-
-        private void OpenWarehouse_AddIncorrectPoduct(object sender, WarehouseEventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

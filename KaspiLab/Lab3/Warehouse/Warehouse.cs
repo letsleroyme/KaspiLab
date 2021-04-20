@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
 using Lab3.Interfaces;
 
 namespace Lab3
 {
     abstract class Warehouse : IWarehouse
     {
+        private Logger log = LogManager.GetCurrentClassLogger();
         public delegate void WarehouseHandler(object sender, WarehouseEventArgs e);
         public event WarehouseHandler AddCorrectPoduct;
         public event WarehouseHandler AddIncorrectPoduct;
@@ -63,7 +65,10 @@ namespace Lab3
             if (!ProductDict.ContainsKey(product))
                 return;
             if (ProductDict[product] - count < 0)
+            {
+                log.Error("Вы пытаетесь перенести слишком большое кол-во товаров со склада! Столько товаров на складе нет!");
                 throw new Exception("Вы пытаетесь перенести слишком большое кол-во товаров со склада! Столько товаров на складе нет!");
+            }
             ProductDict[product] -= count;
             warehouse.AddProduct(product, count);
         }

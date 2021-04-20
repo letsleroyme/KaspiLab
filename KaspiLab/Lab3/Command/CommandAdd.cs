@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
 
 namespace Lab3
 {
@@ -16,7 +17,7 @@ namespace Lab3
         public delegate void CommandAddDelegate(object sender, WarehouseEventArgs e);
         public event CommandAddDelegate AddCorrectProduct;
         public event CommandAddDelegate AddIncorrectProduct;
-
+        Logger log = LogManager.GetCurrentClassLogger();
         public CommandAdd(Product product, Warehouse warehouse, int count = 1)
         {
             _Product = product;
@@ -30,6 +31,7 @@ namespace Lab3
             if ((_Warehouse is OpenWarehouse) && (_Product is BulkProduct))
             {
                 AddIncorrectProduct?.Invoke(this, new WarehouseEventArgs("Открытый склад", "Добавление некорректного товара через комманду", _Product.Name, DateTime.Now));
+                log.Error("Вы не можете хранить сыпучие продукты на открытых складах!");
                 throw new Exception("Вы не можете хранить сыпучие продукты на открытых складах!");
             }
             else

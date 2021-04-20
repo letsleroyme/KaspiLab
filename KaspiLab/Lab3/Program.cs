@@ -4,14 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using NLog;
 namespace Lab3
 {
     class Program
     {
+
         static object locker = new object();
         static async Task Main(string[] args)
         {
+            Logger log = LogManager.GetCurrentClassLogger();
+
             Invoker AddCommandQueue = new Invoker();
             AddCommandQueue.QueueAdd += QueueEventEncounter;
             AddCommandQueue.QueueExecute += QueueEventEncounter;
@@ -149,6 +152,7 @@ namespace Lab3
             }
             catch (Exception ex)
             {
+                log.Debug(ex.ToString() + "\r\n" + ex.StackTrace);
                 Console.WriteLine(ex.ToString());
                 Console.ReadKey();
             }
