@@ -1,0 +1,39 @@
+create table dbo.Document (
+	ID integer primary key not null identity(1,1),
+	DocNumber varchar(50) not null,
+	DateOfIssue date not null,
+	Valid bit not null
+);
+
+create table dbo.AccountNumber (
+	ID integer primary key not null identity(1,1),
+	IBAN varchar(100) not null unique,
+	Balance numeric
+);
+
+
+create table dbo.TypeOfProduct(
+	ID integer primary key not null,
+	Title varchar(100) not null,
+);
+
+create table dbo.Agreement (
+	ID integer primary key not null identity(1,1),
+	DateFrom date not null,
+	DateTo date not null,
+	ProductID integer,
+	foreign key (ProductID) references TypeOfProduct (ID)
+);
+
+create table dbo.Client(
+	ID integer primary key not null identity(1,1),
+	Name varchar(50),
+	Secondname varchar(50),
+	Surname varchar(50),
+	DocumentID int,
+	AccountNumberID int,
+	AgreementID int,
+	foreign key (DocumentID) references Document (ID),
+	foreign key (AccountNumberID) references AccountNumber (ID),
+	foreign key (AgreementID) references Agreement (ID)
+);
