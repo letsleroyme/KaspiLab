@@ -1,0 +1,28 @@
+CREATE FUNCTION [dbo].[CreateAccNumber]
+(	
+	@name varchar(50)
+)
+RETURNS varchar(100)
+AS
+BEGIN
+	-- Declare the return variable here
+	DECLARE @counter SMALLINT; 
+	SET @counter = 1;  
+	DECLARE @namecount smallint;
+	set @namecount = len(@name);
+
+	declare @result varchar(100);
+	set @result ='';
+	
+	while @counter < @namecount
+		begin
+			declare @randomnumber int;
+			set @randomnumber = (select Value from vw_get_rand);
+			set @result += @randomnumber;
+		end
+
+	-- Return the result of the function
+	RETURN @result;
+
+END
+GO
