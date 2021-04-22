@@ -1,0 +1,46 @@
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+USE [kaspilab]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+
+Alter PROCEDURE AddClient 
+	-- Add the parameters for the stored procedure here
+	@ClientName varchar(15),
+	@ClientSurname varchar(15),
+	@ClientSecondName varchar(15),
+	@IDDoc int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	declare @iban varchar(10);
+	set @iban = (select [kaspilab].[dbo].[CreateAccNumber]('дарья'));
+	insert into dbo.AccountNumber values (@iban, 0);
+	declare @accid int;
+	set @accid = (select id from dbo.AccountNumber where dbo.AccountNumber.IBAN = @iban);
+	insert into dbo.Client values (@ClientName, @ClientSurname, @ClientSecondName, @IDDoc, @accid, 3);
+
+	select scope_identity();
+	-- Insert statements for procedure here
+	
+END
+GO
