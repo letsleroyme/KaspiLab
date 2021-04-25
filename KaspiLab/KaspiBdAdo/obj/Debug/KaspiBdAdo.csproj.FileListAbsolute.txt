@@ -1,0 +1,7 @@
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\bin\Debug\KaspiBdAdo.exe.config
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\bin\Debug\KaspiBdAdo.exe
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\bin\Debug\KaspiBdAdo.pdb
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\obj\Debug\KaspiBdAdo.csprojAssemblyReference.cache
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\obj\Debug\KaspiBdAdo.csproj.CoreCompileInputs.cache
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\obj\Debug\KaspiBdAdo.exe
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\obj\Debug\KaspiBdAdo.pdb

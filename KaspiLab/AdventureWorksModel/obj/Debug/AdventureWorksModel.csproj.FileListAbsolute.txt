@@ -1,0 +1,13 @@
+C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\bin\Debug\AdventureWorksModel.dll.config
+C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\bin\Debug\AdventureWorksModel.dll
+C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\bin\Debug\AdventureWorksModel.pdb
+C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\bin\Debug\EntityFramework.dll
+C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\bin\Debug\EntityFramework.xml
+C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\obj\Debug\AdventureWorksModel.csprojAssemblyReference.cache
+C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\obj\Debug\AdventureWorksModel.csproj.CoreCompileInputs.cache
+C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\obj\Debug\AdventureWorksModel.csproj.CopyComplete
+C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\obj\Debug\AdventureWorksModel.dll
+C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\obj\Debug\AdventureWorksModel.pdb
