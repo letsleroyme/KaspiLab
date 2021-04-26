@@ -5,3 +5,11 @@ C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\obj\Debug\KaspiBdAdo.csprojAssem
 C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\obj\Debug\KaspiBdAdo.csproj.CoreCompileInputs.cache
 C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\obj\Debug\KaspiBdAdo.exe
 C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\obj\Debug\KaspiBdAdo.pdb
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\bin\Debug\AdventureWorksModel.dll
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\bin\Debug\EntityFramework.dll
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\bin\Debug\AdventureWorksModel.pdb
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\bin\Debug\AdventureWorksModel.dll.config
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\bin\Debug\EntityFramework.xml
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiBdAdo\obj\Debug\KaspiBdAdo.csproj.CopyComplete

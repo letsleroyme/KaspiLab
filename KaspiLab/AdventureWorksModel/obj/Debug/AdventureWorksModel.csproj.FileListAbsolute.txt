@@ -11,3 +11,4 @@ C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\obj\Debug\AdventureWork
 C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\obj\Debug\AdventureWorksModel.csproj.CopyComplete
 C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\obj\Debug\AdventureWorksModel.dll
 C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\obj\Debug\AdventureWorksModel.pdb
+C:\Users\Buki\Desktop\kaspi\KaspiLab\AdventureWorksModel\bin\Debug\ru\EntityFramework.SqlServer.resources.dll

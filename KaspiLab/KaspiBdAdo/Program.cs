@@ -11,7 +11,7 @@ namespace KaspiBdAdo
     {
         static void Main(string[] args)
         {
-            string pathtodb = @"C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA";
+            /*string pathtodb = @"C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA";
 
             //string connectionstring = $@"Data Source=localhost\\SQLEXPRESS;AttachDbFilename={pathtodb};Initial Catalog=kaspilab;User ID=testuser;Password=qwerty12";
             string connectionstring = $@"Data Source=.\SQLEXPRESS;Initial Catalog=kaspilab;Integrated Security=false;User ID=testuser; Password=qwerty12";
@@ -42,7 +42,10 @@ where doc.DocNumber = {1}";
                     Console.WriteLine(ex.ToString());
                 }
                 Console.ReadLine();
-            }
+            }*/
+
+            WorkWithEntity.SelectFromProduction();
+            Console.ReadKey();
 
 
         }
