@@ -18,7 +18,6 @@ namespace KaspiBdAdo
                 foreach (var phone in res)
                 {
                     Console.WriteLine($"{phone.ProductID}, {phone.Name}, {phone.ProductNumber}");
-                    
                 }
             }
         }
