@@ -1,0 +1,33 @@
+﻿@using KaspiFinal.Controllers;
+
+@{
+    
+    ViewBag.Title = "ViewProducts";
+}
+
+<h2>ViewProducts</h2>
+
+
+<body>
+   
+    <table width="750" cellpadding="5" cellspacing="0">
+       @foreach (ProductInfo product in ViewBag.InfoProducts)
+        {
+/*<tr>
+            <img>Здесь картинка</img>
+            <h5>@product.Name</h5>
+            <p>@product.ListPrice</p>
+            <a>здесь ссылка на покупку</a>  
+         </tr>*/
+            <tr>
+                <td>
+                    <img src="data:image/*;base64,@(Convert.ToBase64String(product.Thumbnail))"><img>
+                    <h5>@product.Name</h5>
+                    <p>@product.Price</p>
+                    <a href="/Products/Buy/@product.ProductID">здесь ссылка на покупку</a>
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+

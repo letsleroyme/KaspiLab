@@ -125,3 +125,6 @@ C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiFinal\obj\Debug\KaspiFinal.csproj.Core
 C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiFinal\obj\Debug\KaspiFinal.csproj.CopyComplete
 C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiFinal\obj\Debug\KaspiFinal.dll
 C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiFinal\obj\Debug\KaspiFinal.pdb
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiFinal\bin\AdventureWorksModel.dll
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiFinal\bin\AdventureWorksModel.pdb
+C:\Users\Buki\Desktop\kaspi\KaspiLab\KaspiFinal\bin\AdventureWorksModel.dll.config
