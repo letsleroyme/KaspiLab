@@ -13,20 +13,24 @@
     <table width="750" cellpadding="5" cellspacing="0">
        @foreach (ProductInfo product in ViewBag.InfoProducts)
         {
-/*<tr>
-            <img>Здесь картинка</img>
-            <h5>@product.Name</h5>
-            <p>@product.ListPrice</p>
-            <a>здесь ссылка на покупку</a>  
-         </tr>*/
-            <tr>
-                <td>
-                    <img src="data:image/*;base64,@(Convert.ToBase64String(product.Thumbnail))"><img>
-                    <h5>@product.Name</h5>
-                    <p>@product.Price</p>
-                    <a href="/Products/Buy/@product.ProductID">здесь ссылка на покупку</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <img src="data:image/*;base64,@(Convert.ToBase64String(product.Thumbnail))"><img>
+            </td>
+            <td>
+                <h5>@product.Name</h5>
+            </td>
+            <td>
+                <p>@product.Price</p>
+            </td>
+            <td>
+                <a href="/Products/About/@product.ProductID">подробнее</a>
+            </td>
+            <td>
+                <a>Вот тут типо добавить в корзину</a>
+            </td>
+
+        </tr>
         }
     </table>
 </body>

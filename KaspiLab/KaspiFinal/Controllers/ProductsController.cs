@@ -18,42 +18,59 @@ namespace KaspiFinal.Controllers
         // GET: Products
         public ActionResult ViewProducts()
         {
-            
-            var products = productRepository.GetList();
             ViewBag.InfoProducts = GetAllPhotos();
             
             return View(/*"~/Views/ProductsView/ViewProducts.chstml"*/);
         }
-
-        public ActionResult Buy (int id)
+        [HttpGet]
+        public ActionResult About (int id)
         {
+            ViewBag.Desc = GetDescriptionAboutProduct(id);
             return View();
         }
 
+        public ProductDesc GetDescriptionAboutProduct(int id)
+        {
+            var products = productRepository.GetList().ToList();
+            var link = ppPhoto.GetList().ToList();
+            var photo = pPhoto.GetList().ToList();
 
+            var res = from pr in products
+                      join links in link on pr.ProductID equals links.ProductID
+                      join photos in photo on links.ProductPhotoID equals photos.ProductPhotoID
+                      where pr.ProductID == id
+                      select new ProductDesc
+                      {
+                          Name = pr.Name,
+                          Price = pr.ListPrice,
+                          Photo = photos.LargePhoto,
+                          ProductID = pr.ProductID,
+                          MakeFlag = pr.MakeFlag,
+                          ProductNumber = pr.ProductNumber,
+                          Color = pr.Color,
+                          Weight = pr.Weight,
+                          Style = pr.Style
+
+                      }; 
+
+            return res.ToList()[0];
+
+
+        }
 
         public List<ProductInfo> GetAllPhotos()
         {
-            var products = productRepository.GetList();
-            var link = ppPhoto.GetList();
-            var photo = pPhoto.GetList();
+            
+            var products = productRepository.GetList().ToList();
+            var link = ppPhoto.GetList().ToList();
+            var photo = pPhoto.GetList().ToList();
 
-            var linktable = ppPhoto.GetList().Select(x => x).ToList();
-
-            var IDs = (from l in linktable
-                       join p in pPhoto.GetList() on l.ProductPhotoID equals p.ProductPhotoID
-                      select new { Id = l.ProductID, Thumbnail = p.ThumbNailPhoto}).ToList();
-
-            var ProductsWithPhotos = (from pr in productRepository.GetList()
-                                      join id in IDs on pr.ProductID equals id.Id
-                                      select new ProductInfo { Name = pr.Name, Price = pr.ListPrice, ProductID = pr.ProductID, Thumbnail = id.Thumbnail });
-
-            /*var all = from pr in products
+            var all = from pr in products
                       join links in link on pr.ProductID equals links.ProductID
                       join photos in photo on links.ProductPhotoID equals photos.ProductPhotoID
-                      select new { Name = pr.Name, Price = pr.ListPrice, Thumbnail = photos.ThumbNailPhoto, Id = pr.ProductID };*/
+                      select new ProductInfo { Name = pr.Name, Price = pr.ListPrice, Thumbnail = photos.ThumbNailPhoto, ProductID = pr.ProductID };
 
-            return ProductsWithPhotos.ToList();
+            return all.ToList();
 
         }
 
@@ -71,6 +88,35 @@ namespace KaspiFinal.Controllers
         public byte[] Thumbnail;
     }
 
+    
+    public class ProductDesc 
+    {
+        public string Name;
+        public decimal Price;
+        public int ProductID;
+        public byte[] Photo;
+        public bool MakeFlag;
 
 
+        public string ProductNumber { get; set; }
+
+
+        public bool FinishedGoodsFlag { get; set; }
+
+        public string Color { get; set; }
+
+        public short SafetyStockLevel { get; set; }
+
+        public short ReorderPoint { get; set; }
+
+        public decimal StandardCost { get; set; }
+
+
+        public decimal? Weight { get; set; }
+
+        public int DaysToManufacture { get; set; }
+        public string ProductLine { get; set; }
+        public string Class { get; set; }
+        public string Style { get; set; }
+    }
 }
